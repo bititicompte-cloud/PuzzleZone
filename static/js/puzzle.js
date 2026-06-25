@@ -167,6 +167,10 @@ function shufflePieces(){
         board.appendChild(piece);
     });
 
+    pieces.forEach((piece, index) => {
+    piece.dataset.currentId = index;
+    });
+
 }
 shuffleBtn.addEventListener("click", () => {
 
@@ -178,20 +182,32 @@ shuffleBtn.addEventListener("click", () => {
 
 function checkWin(){
 
+    console.log("checkWin called");
+
     const pieces = document.querySelectorAll(".piece");
 
     let solved = true;
 
     pieces.forEach(piece => {
 
+        console.log(
+            piece.dataset.id,
+            piece.dataset.currentId
+        );
+
         if(piece.dataset.id !== piece.dataset.currentId){
             solved = false;
         }
 
     });
+    console.log("solved =", solved);
+
+
 
     if(solved){
-
+        console.log("WIN!");
+        
+        
         clearInterval(timerInterval);
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
@@ -201,7 +217,8 @@ function checkWin(){
         launchConfetti();
         document.getElementById("win-popup").style.display = "flex";
 
-    }
+    
+    }    
 
 }
 
