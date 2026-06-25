@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<nav class="navbar">
+    <div class="logo">🧩 PuzzleZone</div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Puzzles</a>
+    </div>
+</nav>
+
+<section class="hero">
+
+    <h1>Challenge Your Mind</h1>
+
+    <p>
+        Discover beautiful puzzles and enjoy a smooth gaming experience.
+    </p>
+
+    <a href="#puzzles" class="play-btn">
+        Start Playing
+    </a>
+
+</section>
+
+<section class="puzzles-section" id="puzzles">
+
+    <h2>Featured Puzzles</h2>
+
+    <div class="puzzle-grid">
+
+        <div class="puzzle-card">
+            <img src="{{ url_for('static', filename='images/puzzle1.jpg') }}" alt="">
+             <a href="/puzzle/1" class="play-link">
+                <button>Play Now</button>
+            </a>
+        </div>
+
+        <div class="puzzle-card">
+            <img src="{{ url_for('static', filename='images/puzzle2.jpg') }}" alt="">
+            <a href="/puzzle/2" class="play-link">
+                <button>Play Now</button>
+            </a>
+            
+        </div>
+
+        <div class="puzzle-card">
+            <img src="{{ url_for('static', filename='images/puzzle3.jpg') }}" alt="">
+            <a href="/puzzle/3" class="play-link">
+                <button>Play Now</button>
+            </a>
+        </div>
+
+        <div class="puzzle-card">
+            <img src="{{ url_for('static', filename='images/puzzle4.jpg') }}" alt="">
+            <a href="/puzzle/4" class="play-link">
+                <button>Play Now</button>
+            </a>
+        </div>
+
+        <div class="puzzle-card">
+            <img src="{{ url_for('static', filename='images/puzzle5.jpg') }}" alt="">
+            <a href="/puzzle/5" class="play-link">
+                <button>Play Now</button>
+            </a>
+        </div>
+
+        <div class="puzzle-card">
+            <img src="{{ url_for('static', filename='images/puzzle6.jpg') }}" alt="">
+            <a href="/puzzle/6" class="play-link">
+                <button>Play Now</button>
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

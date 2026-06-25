@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<nav class="navbar">
+    <div class="logo">🧩 PuzzleZone</div>
+</nav>
+
+<section class="puzzle-page">
+    <a href="/" class="back-home">
+        ← Back Home
+    </a>
+
+    <h1>Puzzle Challenge</h1>
+
+    <div class="timer">
+        ⏱️ 00:00
+    </div>
+
+    <div class="difficulty-selector">
+
+        <button class="difficulty-btn" data-size="3">
+            Easy
+        </button>
+
+        <button class="difficulty-btn active" data-size="4">
+            Medium
+        </button>
+
+        <button class="difficulty-btn" data-size="6">
+            Hard
+        </button>
+
+        <button class="difficulty-btn" data-size="8">
+            Expert
+        </button>
+
+    </div>
+
+    <button id="shuffle-btn" class="shuffle-btn">
+        🔀 Shuffle
+    </button>
+
+    <div class="puzzle-board" id="puzzle-board">
+
+    </div>
+
+    <div id="win-popup" class="win-popup">
+
+        <div class="popup-content">
+
+            <h2>🎉 Congratulations!</h2>
+
+            <p id="final-time">
+                You solved the puzzle!
+            </p>
+
+            <button id="play-again-btn">
+                Play Again
+            </button>
+
+            <a href="/" class="home-btn">
+                Back Home
+            </a>
+
+        </div>
+
+    </div>
+
+    <script>
+        const IMAGE_URL =
+            "{{ url_for('static', filename='images/' + image_name) }}";
+    </script>
+
+    <script src="{{ url_for('static', filename='js/puzzle.js') }}"></script>
+
+</section>
+
+{% endblock %}
