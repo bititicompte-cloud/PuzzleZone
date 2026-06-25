@@ -16,14 +16,27 @@
     <h1>Challenge Your Mind</h1>
 
     <p>
-        Discover beautiful puzzles and enjoy a smooth gaming experience.
+        Discover beautiful puzzles and enjoy a smooth gaming experience
     </p>
 
-    <a href="#puzzles" class="play-btn">
+    <input
+        type="text"
+        id="player-name"
+        placeholder="Enter your name"
+    >
+
+    <button class="play-btn">
         Start Playing
-    </a>
+    </button>
+
+   
 
 </section>
+<div id="name-error" class="name-error">
+    ⚠️ Please enter your name first
+</div>
+
+
 
 <section class="puzzles-section" id="puzzles">
 
@@ -33,14 +46,14 @@
 
         <div class="puzzle-card">
             <img src="{{ url_for('static', filename='images/puzzle1.jpg') }}" alt="">
-             <a href="/puzzle/1" class="play-link">
+            <a href="/puzzle/1" class="play-link puzzle-link">
                 <button>Play Now</button>
             </a>
         </div>
 
         <div class="puzzle-card">
             <img src="{{ url_for('static', filename='images/puzzle2.jpg') }}" alt="">
-            <a href="/puzzle/2" class="play-link">
+            <a href="/puzzle/2" class="play-link puzzle-link">
                 <button>Play Now</button>
             </a>
             
@@ -48,28 +61,28 @@
 
         <div class="puzzle-card">
             <img src="{{ url_for('static', filename='images/puzzle3.jpg') }}" alt="">
-            <a href="/puzzle/3" class="play-link">
+            <a href="/puzzle/3" class="play-link puzzle-link">
                 <button>Play Now</button>
             </a>
         </div>
 
         <div class="puzzle-card">
             <img src="{{ url_for('static', filename='images/puzzle4.jpg') }}" alt="">
-            <a href="/puzzle/4" class="play-link">
+            <a href="/puzzle/4" class="play-link puzzle-link">
                 <button>Play Now</button>
             </a>
         </div>
 
         <div class="puzzle-card">
             <img src="{{ url_for('static', filename='images/puzzle5.jpg') }}" alt="">
-            <a href="/puzzle/5" class="play-link">
+            <a href="/puzzle/5" class="play-link puzzle-link">
                 <button>Play Now</button>
             </a>
         </div>
 
         <div class="puzzle-card">
             <img src="{{ url_for('static', filename='images/puzzle6.jpg') }}" alt="">
-            <a href="/puzzle/6" class="play-link">
+            <a href="/puzzle/6" class="play-link puzzle-link">
                 <button>Play Now</button>
             </a>
         </div>
@@ -77,5 +90,7 @@
     </div>
 
 </section>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
 {% endblock %}

@@ -350,7 +350,7 @@ body{
 
     backdrop-filter:blur(15px);
 
-    padding:40px;
+    padding:40px 30px;
 
     border-radius:25px;
 
@@ -410,7 +410,7 @@ body{
 @media (max-width: 768px){
 
     .hero h1{
-        font-size:2.5rem;
+        font-size:2rem;
     }
 
     .navbar{
@@ -436,6 +436,36 @@ body{
 
         width:min(75vw, 550px);
         height:min(75vw, 550px);
+
+    }
+     #welcome-player{
+        font-size:1.2rem;
+        margin:15px 0 20px;
+    }
+    .hero p{
+        font-size:1rem;
+        padding:0 15px;
+    }
+
+    #player-name{
+        width:85%;
+    }
+
+    .play-btn{
+        width:85%;
+    }
+
+    .difficulty-selector{
+        gap:8px;
+    }
+
+    .difficulty-btn{
+        padding:8px 12px;
+        font-size:0.9rem;
+    }
+     .moves{
+
+        font-size:1rem;
 
     }
 
@@ -604,5 +634,55 @@ html{
 
     text-decoration:none;
     color:white;
+
+}
+#player-name{
+    width:300px;
+    max-width:80%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    margin-bottom:20px;
+    text-align:center;
+    font-size:1rem;
+    margin-top:25px;
+    margin-bottom:20px;
+}
+#welcome-player{
+    margin:20px 0 25px;
+    font-size:1.5rem;
+}
+.name-error{
+    position:fixed;
+    top:30px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ff4757;
+    color:white;
+    padding:15px 25px;
+    border-radius:12px;
+    font-weight:bold;
+    opacity:0;
+    pointer-events:none;
+    transition:0.3s;
+    z-index:9999;
+}
+
+.name-error.show{
+    opacity:1;
+}
+.input-error{
+
+    border:2px solid #ff4757;
+    box-shadow:0 0 15px rgba(255,71,87,.5);
+
+}
+.moves{
+
+    font-size:1.2rem;
+
+    margin:15px 0 25px;
+
+    font-weight:bold;
 
 }

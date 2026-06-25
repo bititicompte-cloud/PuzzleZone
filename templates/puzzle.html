@@ -13,8 +13,14 @@
 
     <h1>Puzzle Challenge</h1>
 
+    <h2 id="welcome-player"></h2>
+
     <div class="timer">
         ⏱️ 00:00
+    </div>
+
+    <div class="moves">
+        🔄 Moves: <span id="moves-count">0</span>
     </div>
 
     <div class="difficulty-selector">
@@ -46,16 +52,18 @@
     </div>
 
     <div id="confetti-container"></div>
-    <div id="confetti-container"></div>
     <div id="win-popup" class="win-popup">
 
         <div class="popup-content">
 
-            <h2>🎉 Congratulations!</h2>
+            <h2 id="winner-title">
+                🎉 Congratulations!
+            </h2>
 
             <p id="final-time">
                 You solved the puzzle!
             </p>
+            <p id="final-moves"></p>
 
             <button id="play-again-btn">
                 Play Again

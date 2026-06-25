@@ -5,6 +5,12 @@ let selectedPiece = null;
 let seconds = 0;
 let timerInterval = null;
 let timerStarted = false;
+let moves = 0;
+const playerName =
+    localStorage.getItem("playerName");
+
+document.getElementById("welcome-player").textContent =
+    `👋 Welcome ${playerName}`;
 
 let GRID_SIZE = 4;
 const difficultyButtons =
@@ -65,6 +71,8 @@ function createPuzzle(){
                 draggedPiece.dataset.currentId = targetId;
                 piece.dataset.currentId = draggedId;
 
+                increaseMoves();
+
                 checkWin();
             });
             piece.addEventListener("click", () => {
@@ -100,6 +108,8 @@ function createPuzzle(){
                 selectedPiece.classList.remove("selected");
                 selectedPiece = null;
 
+                increaseMoves();
+
                 checkWin();
 
             });
@@ -125,6 +135,10 @@ function resetGame(){
         "none";
 
     selectedPiece = null;
+
+    moves = 0;
+
+    document.getElementById("moves-count").textContent = 0;
 
 }
 
@@ -214,7 +228,18 @@ function checkWin(){
 
         document.getElementById("final-time").textContent =
             `Solved in ${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+            document.getElementById("final-moves").textContent =
+                `🔄 Moves: ${moves}`;
         launchConfetti();
+        const winnerTitle =
+            document.getElementById("winner-title");
+
+        console.log("winnerTitle =", winnerTitle);
+
+        if(winnerTitle){
+            winnerTitle.textContent =
+                `🎉 Congratulations ${playerName}!`;
+        }
         document.getElementById("win-popup").style.display = "flex";
 
     
@@ -239,6 +264,15 @@ function startTimer(){
             `⏱️ ${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 
     }, 1000);
+
+}
+
+function increaseMoves(){
+
+    moves++;
+
+    document.getElementById("moves-count").textContent =
+        moves;
 
 }
 
