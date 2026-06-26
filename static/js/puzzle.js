@@ -6,6 +6,7 @@ let seconds = 0;
 let timerInterval = null;
 let timerStarted = false;
 let moves = 0;
+let gameStarted = false;
 const playerName =
     localStorage.getItem("playerName");
 
@@ -56,6 +57,7 @@ function createPuzzle(){
             });
 
             piece.addEventListener("drop", () => {
+                if(!gameStarted) return;
 
                 if(draggedPiece === piece) return;
 
@@ -76,6 +78,7 @@ function createPuzzle(){
                 checkWin();
             });
             piece.addEventListener("click", () => {
+                if(!gameStarted) return;
 
                 if(!selectedPiece){
 
@@ -135,6 +138,7 @@ function resetGame(){
         "none";
 
     selectedPiece = null;
+    gameStarted = false;
 
     moves = 0;
 
@@ -170,29 +174,55 @@ difficultyButtons.forEach(button => {
 
 function shufflePieces(){
 
-    const pieces = Array.from(board.children);
+    const pieces = Array.from(document.querySelectorAll(".piece"));
 
-    pieces.sort(() => Math.random() - 0.5);
+    const currentIds = pieces.map(piece => piece.dataset.currentId);
 
-    board.innerHTML = "";
-    
-
-    pieces.forEach(piece => {
-        board.appendChild(piece);
-    });
+    currentIds.sort(() => Math.random() - 0.5);
 
     pieces.forEach((piece, index) => {
-    piece.dataset.currentId = index;
+
+        const id = currentIds[index];
+
+        piece.dataset.currentId = id;
+
+        const row = Math.floor(id / GRID_SIZE);
+        const col = id % GRID_SIZE;
+
+        piece.style.backgroundPosition =
+            `${(col / (GRID_SIZE - 1)) * 100}% ${(row / (GRID_SIZE - 1)) * 100}%`;
+
     });
 
 }
 shuffleBtn.addEventListener("click", () => {
 
-    shufflePieces();
+    do{
+        shufflePieces();
+    }
+    while(isSolved());
+
+    gameStarted = true;
 
     startTimer();
 
 });
+
+function isSolved(){
+
+    const pieces = document.querySelectorAll(".piece");
+
+    for(const piece of pieces){
+
+        if(piece.dataset.id !== piece.dataset.currentId){
+            return false;
+        }
+
+    }
+
+    return true;
+
+}
 
 function checkWin(){
 
