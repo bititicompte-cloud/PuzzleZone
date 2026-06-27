@@ -28,6 +28,7 @@
     <button class="play-btn">
         Start Playing
     </button>
+    
 
    
 
@@ -36,6 +37,54 @@
     ⚠️ Please enter your name first
 </div>
 
+<section class="leaderboard-section">
+
+    <h2>🏆 Top Players</h2>
+
+    <p class="leaderboard-subtitle">
+        Fastest Puzzle Solvers
+    </p>
+    <p>Players: {{ leaderboard|length }}</p>
+
+    
+
+        {% for player in leaderboard %}
+
+        <div class="leaderboard-card">
+
+           <span class="rank">
+
+                {% if loop.index == 1 %}
+                    🥇
+                {% elif loop.index == 2 %}
+                    🥈
+                {% elif loop.index == 3 %}
+                    🥉
+                {% else %}
+                    {{ loop.index }}
+                {% endif %}
+
+            </span>
+
+            <span class="name">
+                {{ player[0] }}
+            </span>
+
+            <span class="time">
+                ⏱️ {{ player[1] }}s
+            </span>
+
+            <span class="moves">
+                🔄 {{ player[2] }}
+            </span>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 
 <section class="puzzles-section" id="puzzles">
@@ -68,9 +117,9 @@
 
     
 
-    
-
 </section>
+
+
 
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 

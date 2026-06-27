@@ -3,6 +3,8 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 import os
+import sqlite3
+from flask import Flask, render_template, request, jsonify
 
 images_folder = os.path.join(app.static_folder, "images")
 
@@ -21,9 +23,26 @@ PUZZLES = [
 
 @app.route("/")
 def home():
+
+    conn = sqlite3.connect("leaderboard.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT player_name, time, moves
+        FROM leaderboard
+        ORDER BY time ASC, moves ASC
+        LIMIT 10
+    """)
+
+    leaderboard = cursor.fetchall()
+    print(leaderboard)
+
+    conn.close()
+
     return render_template(
         "index.html",
-        puzzles=PUZZLES
+        puzzles=PUZZLES,
+        leaderboard=leaderboard
     )
 
 @app.route("/puzzle/<int:puzzle_id>")
@@ -38,6 +57,31 @@ def puzzle(puzzle_id):
         "puzzle.html",
         image_name=image_name
     )
+
+@app.route("/save-score", methods=["POST"])
+def save_score():
+
+    data = request.get_json()
+
+    conn = sqlite3.connect("leaderboard.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO leaderboard
+        (player_name, puzzle, time, moves)
+        VALUES (?, ?, ?, ?)
+    """, (
+        data["player_name"],
+        data["puzzle"],
+        data["time"],
+        data["moves"]
+    ))
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({"success": True})
 
 if __name__ == "__main__":
     app.run(debug=True)

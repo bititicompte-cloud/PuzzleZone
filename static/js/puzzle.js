@@ -260,6 +260,21 @@ function checkWin(){
             `Solved in ${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
             document.getElementById("final-moves").textContent =
                 `🔄 Moves: ${moves}`;
+
+        fetch("/save-score", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                player_name: playerName,
+                puzzle: Number(
+                    window.location.pathname.split("/").pop()
+                ),
+                time: seconds,
+                moves: moves
+            })
+        });
         launchConfetti();
         const winnerTitle =
             document.getElementById("winner-title");
