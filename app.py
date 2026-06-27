@@ -24,6 +24,11 @@ PUZZLES = [
 @app.route("/")
 def home():
 
+    import os
+
+    print("Current working directory:", os.getcwd())
+    print("Database path:", os.path.abspath("leaderboard.db"))
+
     conn = sqlite3.connect("leaderboard.db")
     cursor = conn.cursor()
 
