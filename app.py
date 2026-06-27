@@ -4,6 +4,10 @@ app = Flask(__name__)
 
 import os
 import sqlite3
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "leaderboard.db")
 from flask import Flask, render_template, request, jsonify
 
 images_folder = os.path.join(app.static_folder, "images")
@@ -29,7 +33,7 @@ def home():
     print("Current working directory:", os.getcwd())
     print("Database path:", os.path.abspath("leaderboard.db"))
 
-    conn = sqlite3.connect("leaderboard.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute("""
